@@ -6,12 +6,13 @@ const app =express();
 
 // require("dotenv").config();
 require("./mongo_connection/mongo");
+
  const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const bodyparser = require("body-parser");
 const auth = require("./route/auth");
-//const user = require("./route/user");
+const trip = require("./route/trip");
 //const setting = require("./routes/setting");
 const cookieParser=require('cookie-parser');
 require ("./mongo_connection/mongo");
@@ -35,7 +36,7 @@ app.use(cookieParser());
 
 
 app.use("/auth/v1", auth);
-//app.use("/user/v1", user);
+app.use("/trip/v1", trip);
 //app.use("/setting/v1", setting);
 
 
