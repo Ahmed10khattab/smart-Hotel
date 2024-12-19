@@ -61,8 +61,8 @@ const login = async (req, res) => {
 
 
 const verifyToken = (req, res, next) => {
-   // const token = req.header("Authorization")?.split(" ")[1]; // Extract Bearer token
-   const token =req.body.token
+   const token = req.header("Authorization")?.split(" ")[1]; // Extract Bearer token
+  // const token =req.body.token
   
     if (!token) {
       return res.status(401).json({ message: "Access token is required" });
