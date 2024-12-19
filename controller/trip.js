@@ -21,7 +21,7 @@ const addTrip= async (req, res) => {
 const getAllTrips= async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
-      const limit = 7; // Number of trips per page
+      const limit = 8; // Number of trips per page
       const skip = (page - 1) * limit;
   
       const trips = await Trip.find().skip(skip).limit(limit);
