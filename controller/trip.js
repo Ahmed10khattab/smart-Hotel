@@ -10,14 +10,36 @@ const addTrip= async (req, res) => {
     }
   };
 
-  const getAllTrips= async(req, res) => {
+//   const getAllTrips= async(req, res) => {
+//     try {
+//       const trips = await Trip.find();
+//       res.json(trips);
+//     } catch (err) {
+//       res.status(500).json({ error: err.message });
+//     }
+//   };
+const getAllTrips= async (req, res) => {
     try {
-      const trips = await Trip.find();
-      res.json(trips);
+      const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
+      const limit = 7; // Number of trips per page
+      const skip = (page - 1) * limit;
+  
+      const trips = await Trip.find().skip(skip).limit(limit);
+  
+      const totalTrips = await Trip.countDocuments(); // Total number of trips
+      const totalPages = Math.ceil(totalTrips / limit); // Total number of pages
+  
+      res.json({
+        currentPage: page,
+        totalPages,
+        totalTrips,
+        trips,
+      });
     } catch (err) {
       res.status(500).json({ error: err.message });
     }
   };
+
 
 
   const getTripById =async (req, res) => {
