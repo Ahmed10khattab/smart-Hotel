@@ -114,7 +114,6 @@ const tripSchema = new mongoose.Schema(
     description: { type: String },
     destination: { type: String, required: true },
     discount: { type: String, },
-    
     price: { type: Number, required: true },
     itinerary: [
       {
@@ -125,11 +124,6 @@ const tripSchema = new mongoose.Schema(
     images: [String],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Admin", required: true },
     transportationDetails: { type: String},
-    
-       
-       
-      
-    
     notes: { type: String },
   },
   { timestamps: true }
