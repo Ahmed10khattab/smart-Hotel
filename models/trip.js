@@ -112,12 +112,10 @@ const tripSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
-    startLocation: { type: String, required: true },
     destination: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    discount: { type: String, },
+    
     price: { type: Number, required: true },
-    availableSeats: { type: Number, required: true, min: 0 },
     itinerary: [
       {
         day: { type: Number, required: true },
@@ -126,15 +124,12 @@ const tripSchema = new mongoose.Schema(
     ],
     images: [String],
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "Admin", required: true },
-    status: { type: String, enum: ["Upcoming", "Completed", "Cancelled"], default: "Upcoming" },
-    termsAndConditions: { type: String },
-    transportationDetails: {
-      type: {
-        type: String,
-        pickupTime: Date,
-        pickupLocation: String,
-      },
-    },
+    transportationDetails: { type: String},
+    
+       
+       
+      
+    
     notes: { type: String },
   },
   { timestamps: true }
