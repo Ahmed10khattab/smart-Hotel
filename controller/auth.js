@@ -82,7 +82,7 @@ const verifyToken = (req, res, next) => {
   const getUserByToken=async (req, res) => {
     try {
       // Fetch user using decoded userId from the token
-      const user = await auth.findById(req.userId).select("-password -__v"); // Exclude password and __v
+      const user = await auth.findById(req.userId).select("-password -__v -createdAt -updatedAt"); // Exclude password and __v
   
       if (!user) {
         return res.status(404).json({ "role": "unauthenticated" });
