@@ -70,7 +70,7 @@ const verifyToken = (req, res, next) => {
   
     jwt.verify(token, "sec", (err, decoded) => {
       if (err) {
-        return res.status(403).json({ message: "Invalid or expired token" });
+        return res.status(403).json({ "role": "unauthenticated" });
       }
   
       req.userId = decoded._id; // Attach user ID to request object
@@ -85,11 +85,11 @@ const verifyToken = (req, res, next) => {
       const user = await auth.findById(req.userId).select("-password -__v"); // Exclude password and __v
   
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(404).json({ "role": "unauthenticated" });
       }
   
       res.status(200).json({
-        message: "User fetched successfully",
+        "role": "authenticated",
         user,
       });
     } catch (error) {
